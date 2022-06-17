@@ -1,7 +1,6 @@
 
-package pkgprojectUAS;
 
-import pkgRef.cTransaksi;
+package pkgprojectUAS;
 
 
 public class cProsesTransaksi {
@@ -24,7 +23,7 @@ public class cProsesTransaksi {
           rear.next=baru;
           rear=baru;
       }
-      System.out.println("Penambahan sukses");
+      
   }
   public void showTransaksi(){
       int i=1;
@@ -47,6 +46,7 @@ public class cProsesTransaksi {
   }
   public void showTransaksimember(){
       int i=1;
+      double total=0,diskon;
       System.out.println(" ---------------------------------------------------------------------------------------------------");
       System.out.println("|\t\t\t\t\tDaftar Transaksi\t\t\t\t\t\t|");
       System.out.println(" ---------------------------------------------------------------------------------------------------");
@@ -54,15 +54,22 @@ public class cProsesTransaksi {
       System.out.println(" ---------------------------------------------------------------------------------------------------");
       for (cTraansaksi t=front; t!=null; t=t.next) {
           System.out.print("|\t"+i+"\t|");
-          System.out.print("\t"+t.getKode()+"\t|");
+          System.out.print("\t"+t.getpembeli()+"\t|");
           System.out.print("\t"+t.getpembeli()+"\t|");
           System.out.print("\t"+t.getItem().getName()+"\t|");
           System.out.print("\t"+t.getjumlahbrg()+"\t|");
           System.out.println("\t"+t.getStatus()+"\t|");
           System.out.println(" ---------------------------------------------------------------------------------------------------");
           i++;
+          total=total+(t.getItem().getPrice()*t.getjumlahbrg());
+          
       }
-  
+      System.out.println("| Total Belanja  : "+total+"\t\t\t\t\t\t\t\t\t\t|");
+      System.out.println("---------------------------------------------------------------------------------------------------");
+      System.out.println("| Diskon 5%      : "+(0.05*total)+"\t\t\t\t\t\t\t\t\t\t|");
+      System.out.println("---------------------------------------------------------------------------------------------------");
+      System.out.println("| jumlah dibayar : "+(total-(0.05*total))+"\t\t\t\t\t\t\t\t\t\t|");
+      System.out.println(" ---------------------------------------------------------------------------------------------------");
   }
   public void deleteTransaksi(int nomor){
       cTraansaksi t=front;
@@ -97,7 +104,7 @@ public class cProsesTransaksi {
               System.out.println("["+t.getItem().getName()+"]  dihapus..");
           }
   }
-   public void sambungTransaksi(cTraansaksi depan,cTraansaksi belakang){
+  public void sambungTransaksi(cTraansaksi depan,cTraansaksi belakang){
       //sambungkan transaksi
       
       if (rear==null) {//transaksi toko masih kosong
@@ -110,17 +117,10 @@ public class cProsesTransaksi {
       }
       
    }
-     public int lihatPemasukan(){
-      cTraansaksi t = front;
-      int nominal = 0;
-      for (; t!=null; t=t.next) {
-          if (t.getStatus()==1) {
-              nominal=nominal+t.getBarang().getPrice()*t.getjumlahbrg();
-          }
-      }
-      return nominal;
+  public void prosesTransaksi(cTraansaksi t){
+     //cek member
+      t.setStatus(1);
   }
-
   public int lihatdiproses(){
        cTraansaksi t=front;
       int proses=0;
@@ -131,4 +131,22 @@ public class cProsesTransaksi {
       }
       return proses;
   }
+  public double lihatpemasukan(){
+      cTraansaksi t=front;
+      double nominal=0;
+      for (; t!=null; t=t.next) {
+          if (t.getStatus()==1) {
+              //cek member berdasarkan data nama/kode pembeli
+              nominal=nominal+t.getItem().getPrice()*t.getjumlahbrg();
+              //System.out.println("Kode"+t.getKode());
+              if (t.getpembeli().compareToIgnoreCase("21001")==0||t.getpembeli().compareToIgnoreCase("21002")==0||t.getpembeli().compareToIgnoreCase("21003")==0) {
+                  System.out.println("Member!");
+                  nominal=nominal-(0.05*nominal); 
+              }
+             
+          }
+      }
+      return nominal;
+  }
 }
+
