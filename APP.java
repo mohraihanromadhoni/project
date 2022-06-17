@@ -46,10 +46,11 @@ public class APP {
                     System.out.print("Masukkan Nama : ");
                     String nm = ac.next();
                     do{
+                        System.out.println("\nSelamat Datang di sub Menu Akun Pembeli ");
                         System.out.println("\nAkun Pembeli");
-                        System.out.println("1.Tambah");
-                        System.out.println("2.Hapus");
-                        System.out.println("3.Lihat");
+                        System.out.println("1.Tambah Barang");
+                        System.out.println("2.Hapus Barang");
+                        System.out.println("3.Lihat Keranjang");
                         System.out.println("4.Exit");
                         System.out.print("Pilih : ");
                         pilih1=ac.nextInt();
@@ -111,7 +112,7 @@ public class APP {
                     }while(pilih1!=4);
                     break;
                 case 2://member
-                    System.out.println("Akun Member");
+                    System.out.println("\nAkun Member");
                     System.out.println("1.Transaksi");
                     System.out.println("2.Ubah password");
                     System.out.print("Pilih : ");
@@ -119,7 +120,7 @@ public class APP {
                     if (pilih3==1) {
                      boolean cek = false;
                     do{
-                        System.out.print("ID: ");
+                        System.out.print("ID : ");
                         username = ac.nextInt();
                         System.out.print("PASSWORD :");
                         password = ac.nextInt();
