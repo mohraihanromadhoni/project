@@ -215,6 +215,8 @@ public class APP {
                 case 3://admin
                     break;
                 case 4://pemilik
+                    System.out.println("    Transaksi Diproses : " +jual.lihatdiproses());
+                    System.out.println("    Pemasukan : " +jual.lihatPemasukan());
                     break;
                 case 5://kembali
                     break;
