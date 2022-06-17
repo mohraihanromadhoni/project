@@ -28,8 +28,9 @@ public class APP {
         int jumlah=0;
         int kode=0;
         do{
-            System.out.println("");
-            System.out.println("\n App toko");
+      System.out.println(" ---------------------------------------------------------------------------------------------------");
+      System.out.println("|\t\t\t\t\tDaftar Transaksi\t\t\t\t\t\t|");
+      System.out.println(" ---------------------------------------------------------------------------------------------------");
             System.out.println("1.Pembeli");
             System.out.println("2.Member");
             System.out.println("3.Admin");
