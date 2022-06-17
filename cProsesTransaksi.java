@@ -1,6 +1,8 @@
 
 package pkgprojectUAS;
 
+import pkgRef.cTransaksi;
+
 
 public class cProsesTransaksi {
     cTraansaksi front, rear;
@@ -22,7 +24,7 @@ public class cProsesTransaksi {
           rear.next=baru;
           rear=baru;
       }
-      
+      System.out.println("Penambahan sukses");
   }
   public void showTransaksi(){
       int i=1;
@@ -52,7 +54,7 @@ public class cProsesTransaksi {
       System.out.println(" ---------------------------------------------------------------------------------------------------");
       for (cTraansaksi t=front; t!=null; t=t.next) {
           System.out.print("|\t"+i+"\t|");
-          System.out.print("\t"+t.getpembeli()+"\t|");
+          System.out.print("\t"+t.getKode()+"\t|");
           System.out.print("\t"+t.getpembeli()+"\t|");
           System.out.print("\t"+t.getItem().getName()+"\t|");
           System.out.print("\t"+t.getjumlahbrg()+"\t|");
@@ -95,7 +97,7 @@ public class cProsesTransaksi {
               System.out.println("["+t.getItem().getName()+"]  dihapus..");
           }
   }
-  public void sambungTransaksi(cTraansaksi depan,cTraansaksi belakang){
+   public void sambungTransaksi(cTraansaksi depan,cTraansaksi belakang){
       //sambungkan transaksi
       
       if (rear==null) {//transaksi toko masih kosong
@@ -108,7 +110,25 @@ public class cProsesTransaksi {
       }
       
    }
-  
-   
-}
+     public int lihatPemasukan(){
+      cTraansaksi t = front;
+      int nominal = 0;
+      for (; t!=null; t=t.next) {
+          if (t.getStatus()==1) {
+              nominal=nominal+t.getBarang().getPrice()*t.getjumlahbrg();
+          }
+      }
+      return nominal;
+  }
 
+  public int lihatdiproses(){
+       cTraansaksi t=front;
+      int proses=0;
+      for (; t!=null; t=t.next) {
+          if (t.getStatus()==1) {
+              proses++;
+          }
+      }
+      return proses;
+  }
+}
