@@ -29,7 +29,7 @@ public class APP {
         int kode=0;
         do{
             System.out.println("");
-            System.out.println("/App toko");
+            System.out.println("\n App toko");
             System.out.println("1.Pembeli");
             System.out.println("2.Member");
             System.out.println("3.Admin");
