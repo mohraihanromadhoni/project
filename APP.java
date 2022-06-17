@@ -1,4 +1,5 @@
 
+
 package pkgprojectUAS;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter; 
@@ -28,9 +29,8 @@ public class APP {
         int jumlah=0;
         int kode=0;
         do{
-      System.out.println(" ---------------------------------------------------------------------------------------------------");
-      System.out.println("|\t\t\t\t\tDaftar Transaksi\t\t\t\t\t\t|");
-      System.out.println(" ---------------------------------------------------------------------------------------------------");
+            System.out.println("");
+            System.out.println("/App toko");
             System.out.println("1.Pembeli");
             System.out.println("2.Member");
             System.out.println("3.Admin");
@@ -46,11 +46,10 @@ public class APP {
                     System.out.print("Masukkan Nama : ");
                     String nm = ac.next();
                     do{
-                        System.out.println("\nSelamat Datang di sub Menu Akun Pembeli ");
                         System.out.println("\nAkun Pembeli");
-                        System.out.println("1.Tambah Barang");
-                        System.out.println("2.Hapus Barang");
-                        System.out.println("3.Lihat Keranjang");
+                        System.out.println("1.Tambah");
+                        System.out.println("2.Hapus");
+                        System.out.println("3.Lihat");
                         System.out.println("4.Exit");
                         System.out.print("Pilih : ");
                         pilih1=ac.nextInt();
@@ -112,7 +111,7 @@ public class APP {
                     }while(pilih1!=4);
                     break;
                 case 2://member
-                    System.out.println("\nAkun Member");
+                    System.out.println("Akun Member");
                     System.out.println("1.Transaksi");
                     System.out.println("2.Ubah password");
                     System.out.print("Pilih : ");
@@ -120,7 +119,7 @@ public class APP {
                     if (pilih3==1) {
                      boolean cek = false;
                     do{
-                        System.out.print("ID : ");
+                        System.out.print("ID: ");
                         username = ac.nextInt();
                         System.out.print("PASSWORD :");
                         password = ac.nextInt();
@@ -201,7 +200,7 @@ public class APP {
                                 beli.deleteTransaksi(hapus);
                                 break;
                             case 3://lihat
-                                beli.showTransaksi();
+                                beli.showTransaksimember();
                                 break;
                             case 4://exit
                                 jual.sambungTransaksi(beli.getFront(), beli.getRear());
@@ -215,13 +214,39 @@ public class APP {
                     
                     break;
                 case 3://admin
+                    System.out.println("Akun Admin");
+                    jual.showTransaksi();
+                    //memproses setiap transaksi yang belum diproses
+                    cTraansaksi t = jual.getFront();
+                    do {
+                        if (t.getStatus() == 0) {
+                            System.out.println("kode   : " + t.getKode());
+                            System.out.println("pembeli: " + t.getpembeli());
+                            System.out.println("Barang : " + t.getItem().getName());
+                            System.out.println("jumlah : " + t.getjumlahbrg());
+                            System.out.println("Pilih Aksi-");
+                            System.out.println("1.Diproses");
+                            System.out.println("2.selesai");
+                            System.out.print("Pilih : ");
+                            int aksi = ac.nextInt();
+                            if (aksi == 1) {
+                                jual.prosesTransaksi(t);
+                                System.out.println("Berhasil Diproses..");
+                            } else {
+                                break;
+                          }
+                        }
+                        t = t.next;
+
+                    } while (t != null);
                     break;
                 case 4://pemilik
-                    System.out.println("    Transaksi Diproses : " +jual.lihatdiproses());
-                    System.out.println("    Pemasukan : " +jual.lihatPemasukan());
+                    System.out.println("Akun Pemilik");
+                    System.out.println(" Transaksi diproses : " + jual.lihatdiproses());
+                    System.out.println("Pemasukan : " + jual.lihatpemasukan());
                     break;
                 case 5://kembali
-                    System.out.println("Terimakasih....");
+                    System.out.println("Terima kasih");
                     break;
             }
         }while(pilih!=5);
