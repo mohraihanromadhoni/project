@@ -220,6 +220,7 @@ public class APP {
                     System.out.println("    Pemasukan : " +jual.lihatPemasukan());
                     break;
                 case 5://kembali
+                    System.out.println("Terimakasih....");
                     break;
             }
         }while(pilih!=5);
